@@ -10,9 +10,9 @@ require("dotenv").config();
 
 const app= Express();
 
-let URL_REACT="http://localhost:3000";
+// let URL_REACT="http://localhost:3000";
 const corsOptions = {
-    origin: URL_REACT,
+    origin: process.env.URL_REACT,
     optionsSuccessStatus: 200,
     credentials: true
 }
