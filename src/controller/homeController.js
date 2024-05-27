@@ -5,7 +5,7 @@ export const handleHome= async (req, res)=>{
     try{
 
         try{
-            const [results, fields] = await connection.query('SELECT * FROM `Teachers`');
+            const [results, fields] = await connection.query('SELECT * FROM `teachers`');
             return res.render("home.ejs", {
                 data: JSON.stringify(results)
             });
