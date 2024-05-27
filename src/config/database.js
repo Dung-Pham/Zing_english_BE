@@ -5,7 +5,8 @@ require("dotenv").config();
 const connection = mysql.createPool({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
-  database: 'slcenglish',
+  database: process.env.DB_DATABASE,
+  password: process.env.DB_PASSWORD, 
   waitForConnections: true,
   connectionLimit: 10,
   maxIdle: 10, // max idle connections, the default value is the same as `connectionLimit`

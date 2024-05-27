@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "root",
-    "password": null,
-    "database": "slcenglish",
-    "host": "127.0.0.1",
+    "username": "b677c3d818edba",
+    "password": "c9e7e74e",
+    "database": "heroku_1161302940e011b",
+    "host": "us-cluster-east-01.k8s.cleardb.net",
     "dialect": "mysql"
   },
   "test": {
