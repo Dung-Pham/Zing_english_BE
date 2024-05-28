@@ -9,7 +9,10 @@ import {handleGetTopteacher, handleGetAllTeacher
     ,handleEditTeacher,
     handleDeleteTeacher,
     
-    handleCreateNewsTeacher
+    handleCreateNewsTeacher,
+    handleCreateNewsHW,
+    handleGetAllHW,
+    handleEditHW
     } from "../controller/teacherController";
 import {handleGetAllCourses,handleGetClassById,
      handleGetDetailCourse,handleGetAllClass,
@@ -55,6 +58,10 @@ const initWebRoutes= (app)=>{
     router.post('/api/create-new-teacher', handleCreateNewsTeacher);
     router.get('/api/get-teacher-by-user-id', handleGetTeacherByUserId);
     router.put('/api/edit-teacher', handleEditTeacher);
+
+    router.get('/api/get-all-hw', handleGetAllHW);
+    router.post('/api/create-new-hw', handleCreateNewsHW);
+    router.put('/api/edit-hw', handleEditHW);
 
 
     //staff

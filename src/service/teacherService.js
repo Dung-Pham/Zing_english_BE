@@ -178,10 +178,91 @@ let editTeacher=(data)=>{
 
 
 
+let getAllHW=()=>{
+    return new Promise(async (resolve, reject)=>{
+        try {
+            let [homework]= await  connection.query(
+                "SELECT * FROM homework"
+            );
+            resolve(homework);
+        }catch(e){
+            reject(e);
+        }
+    })
+}
+
+
+let createNewHW=(data)=>{
+    return new Promise(async (resolve, reject)=>{
+        let name= data.HomeworkName;
+        let des= data.Description;
+        let classId= data.ClassId;
+        console.log(data);
+        try {                       
+            const [results]= await connection.query(
+                "INSERT INTO homework (HomeworkName,Description,ClassId) VALUE (?,?,?)",
+                [name, des, classId],
+            );
+
+            resolve({
+                errCode: 0,
+                message: 'OK'
+            })
+        }catch(e){
+            reject(e);
+        }
+    })
+}
+let editHW=(data)=>{
+    return new Promise(async(resolve, reject )=>{
+        let name= data.HomeworkName;
+        let des= data.Description;
+        //let classId= data.ClassId;
+        try{
+         
+            if (!name) {
+                resolve({
+                    errCode: 2,
+                    errMessage: `Missing input parameters!`
+                })
+            }
+            let [homework] = await connection.query(
+                "SELECT * FROM homework WHERE HomeworkId=?",[data.HomeworkId]
+            )
+
+            if (homework[0]) {
+                try{
+                    let rs= await connection.query(
+                        "UPDATE homework SET HomeworkName=? ,Description=?  WHERE HomeworkId =? "
+                        ,[name,des, data.HomeworkId]
+                    )
+                }catch(e){
+                    console.log(e);
+                }   
+                
+
+                resolve({
+                    errCode: 0,
+                    errMessage: `Update hw succeed!`
+                })
+            } else {
+                resolve({
+                    errCode: 1,
+                    errMessage: `hw is not found!`
+                })
+            }
+        }catch(e){
+            reject(e);
+        }
+    })
+}
+
 module.exports={
     getTopTeacher,
     getAllTeachers,
     getTeacherByUserId,
     createNewTeacher,
-    editTeacher
+    editTeacher,
+    getAllHW,editHW,createNewHW
+
 }

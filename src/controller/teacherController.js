@@ -3,6 +3,9 @@ import {getTopTeacher, getAllTeachers,
     getTeacherByUserId,
     editTeacher,
     createNewTeacher,
+    getAllHW,
+    editHW,
+    createNewHW,
     } from '../service/teacherService';
 
 export const handleGetTopteacher=async (req, res)=>{
@@ -71,6 +74,36 @@ export const handleCreateNewsTeacher= async(req, res)=>{
 
 export const handleEditTeacher= async(req, res)=>{
     let message= await editTeacher(req.body);
+    return res.status(200).json(message);
+}
+
+
+export const handleGetAllHW= async( req, res)=>{
+    try{
+        let data= await getAllHW();
+        res.status(200).json({
+            errCode: 0,
+            errMassage: "OK",
+            data
+        })
+
+    }catch(e){
+        return res.status(200).json({
+            errCode: -1,
+            errMasage:"err  from server ..."
+        })
+    }
+}
+
+export const handleCreateNewsHW= async(req, res)=>{
+    let message = await createNewHW(req.body)
+    console.log(message)
+    return res.status(200).json(message)
+}
+
+
+export const handleEditHW= async(req, res)=>{
+    let message= await editHW(req.body);
     return res.status(200).json(message);
 }
 
